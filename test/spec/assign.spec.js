@@ -113,6 +113,9 @@ describe('#assign', function() {
 		request(this.app)
 			.get('/')
 			.set('Authorization', 'B$"%')
+			.expect(function(res) {
+				expect(res.statusCode).to.equal(400);
+			})
 			.end(done);
 	});
 });
