@@ -10,7 +10,9 @@ describe('#challenge', function() {
 		this.app = express();
 	});
 	it('should fail with no scheme', function() {
-		expect(challenge).to.throw(TypeError);
+		expect(function() {
+			challenge();
+		}).to.throw(TypeError);
 	});
 
 	it('should set `WWW-Authenticate` header with scheme', function(done) {
@@ -20,6 +22,16 @@ describe('#challenge', function() {
 			.expect(function(res) {
 				expect(res.headers).to.have
 					.property('www-authenticate', 'Basic');
+			})
+			.end(done);
+	});
+
+	it('should not set `WWW-Authenticate` if not `advertise`', function(done) {
+		this.app.use(challenge({ scheme: 'Basic', advertise: false }));
+		request(this.app)
+			.get('/')
+			.expect(function(res) {
+				expect(res.headers).to.not.have.property('www-authenticate');
 			})
 			.end(done);
 	});
