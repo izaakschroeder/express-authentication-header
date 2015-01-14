@@ -47,8 +47,7 @@ describe('#challenge', function() {
 			.end(done);
 	});
 
-	// TODO: See challenge.js
-	it.skip('should not clobber the WWW-Authenticate header', function(done) {
+	it('should not clobber the WWW-Authenticate header', function(done) {
 		this.app.use(function(req, res, next) {
 			res.set('WWW-Authenticate', 'Other');
 			next();
@@ -57,10 +56,10 @@ describe('#challenge', function() {
 		request(this.app)
 			.get('/')
 			.expect(function(res) {
-				expect(res.headers).to.have
-					.property('www-authenticate', 'Basic realm=foo');
-				expect(res.headers).to.have
-					.property('www-authenticate', 'Other');
+				expect(res.headers['www-authenticate'])
+					.to.contain('Basic realm=foo');
+				expect(res.headers['www-authenticate'])
+					.to.contain('Other');
 			})
 			.end(done);
 	});
