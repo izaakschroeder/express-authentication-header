@@ -35,6 +35,7 @@
 		"supertest": "^0.15.0"
 	},
 	"peerDependencies": {
+		"express": "^4.11.0",
 		"express-authentication": "^0.2.0"
 	}
 }
