@@ -1,6 +1,6 @@
 {
 	"name": "express-authentication-header",
-	"version": "0.1.5",
+	"version": "0.2.0",
 	"description": "Authenticate against any RFC7235 HTTP Authorization header, compatible with express-authentication",
 	"author": "Izaak Schroeder <izaak.schroeder@gmail.com>",
 	"keywords": [ "express-authentication", "express", "RFC7235", "auth" ],
